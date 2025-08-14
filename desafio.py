@@ -8,7 +8,7 @@ menu = """
 
 saldo = 0
 LIMITE_POR_SAQUE = 600
-LIMITE_DE_DINHEIRO_SACADO_DIARIO = 1500
+LIMITE_DE_DINHEIRO_SACADO_DIARIO = 1000
 extrato = ""
 numero_saques = 0
 sacado=0
@@ -55,10 +55,10 @@ while True:
             elif valor > 0:
                 fluxo = True
                 if excedeu_limite_saque_diario:
-                    excedente= (valor+sacado)-LIMITE_DE_DINHEIRO_SACADO_DIARIO
-                    resposta = input(f"O valor excede o seu limite diario de saque, valor disponivel ${excedente:.2f}\n[1] Sacar ${excedente:.2f}\n[2] Cancelar saque\n==>")
+                    limite_disponivel= LIMITE_DE_DINHEIRO_SACADO_DIARIO-sacado
+                    resposta = input(f"O valor excede o seu limite diario de saque, valor disponivel ${limite_disponivel:.2f}\n[1] Sacar ${limite_disponivel:.2f}\n[2] Cancelar saque\n==>")
                     if resposta=="1":
-                        valor=excedente
+                        valor=limite_disponivel
                     else:
                         fluxo=False
                 if fluxo:
